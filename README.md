@@ -30,3 +30,71 @@ file.
 6. **get/post options** are used to execute GET/POST requests respectively. post should
 have either -d or -f but not both. However, get option should not be used with the
 options -d or -f.
+
+## Help
+```httpc help (get|post)```
+## Examples
+#### 1. Get with query parameters
+```httpc get 'http://httpbin.org/get?course=networking&assignment=1'```
+##### Output
+The output of above command is:
+```javascript
+{
+ "args": {
+ "assignment": "1",
+ "course": "networking"
+ },
+ "headers": {
+ "Host": "httpbin.org",
+ "User-Agent": "Concordia-HTTP/1.0"
+ },
+ "url": "http://httpbin.org/get?course=networking&assignment=1"
+}
+```
+#### 2. Get with verbose option
+```httpc get -v 'http://httpbin.org/get?course=networking&assignment=1'```
+##### Output
+The output of above command is:
+```javascript
+HTTP/1.1 200 OK
+Server: nginx
+Date: Fri, 1 Sep 2017 14:52:12 GMT
+Content-Type: application/json
+Content-Length: 255
+Connection: close
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true{
+ "args": {
+ "assignment": "1",
+ "course": "networking"
+ },
+ "headers": {
+ "Host": "httpbin.org",
+ "User-Agent": "Concordia-HTTP/1.0"
+ },
+ "url": "http://httpbin.org/get?course=networking&assignment=1"
+}
+```
+#### 3. Post with inline data
+```httpc post -h Content-Type:application/json --d '{"Assignment": 1}' http://httpbin.org/post```
+##### Output
+The output of above command is:
+```javascript
+{
+ "args": {},
+ "data": "{\"Assignment\": 1}",
+ "files": {},
+ "form": {},
+ "headers": {
+ "Content-Length": "17",
+ "Content-Type": "application/json",
+ "Host": "httpbin.org",
+ "User-Agent": "Concordia-HTTP/1.0"
+ },
+ "json": {
+ "Assignment": 1
+ },
+ "url": "http://httpbin.org/post"
+}
+```
+
