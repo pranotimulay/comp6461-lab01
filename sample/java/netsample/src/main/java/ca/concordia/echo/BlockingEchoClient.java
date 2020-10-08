@@ -1,7 +1,6 @@
 package ca.concordia.echo;
 
-import joptsimple.OptionParser;
-import joptsimple.OptionSet;
+import static java.util.Arrays.asList;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -13,7 +12,8 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-import static java.util.Arrays.asList;
+import joptsimple.OptionParser;
+import joptsimple.OptionSet;
 
 public class BlockingEchoClient {
 

@@ -1,10 +1,9 @@
 package ca.concordia.echo;
 
 
-import joptsimple.OptionParser;
-import joptsimple.OptionSet;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static java.nio.channels.SelectionKey.OP_ACCEPT;
+import static java.nio.channels.SelectionKey.OP_READ;
+import static java.util.Arrays.asList;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -14,9 +13,11 @@ import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 
-import static java.nio.channels.SelectionKey.OP_ACCEPT;
-import static java.nio.channels.SelectionKey.OP_READ;
-import static java.util.Arrays.asList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import joptsimple.OptionParser;
+import joptsimple.OptionSet;
 
 public class MultiplexEchoServer {
 

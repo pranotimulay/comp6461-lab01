@@ -11,6 +11,10 @@ public class Command {
 	String filePath;
 	String url;
 
+	public Command() {
+
+	}
+
 	public Command(RequestType type, boolean verboseOption, HashMap<String, String> headers, String inlineData,
 			String filePath, String url) {
 		super();

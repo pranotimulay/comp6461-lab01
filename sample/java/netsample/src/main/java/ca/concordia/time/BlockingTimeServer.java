@@ -1,10 +1,6 @@
 package ca.concordia.time;
 
-import ca.concordia.echo.BlockingEchoServer;
-import joptsimple.OptionParser;
-import joptsimple.OptionSet;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static java.util.Arrays.asList;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -16,7 +12,12 @@ import java.time.Instant;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static java.util.Arrays.asList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import ca.concordia.echo.BlockingEchoServer;
+import joptsimple.OptionParser;
+import joptsimple.OptionSet;
 
 public class BlockingTimeServer {
 

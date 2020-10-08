@@ -1,7 +1,6 @@
 package ca.concordia.time;
 
-import joptsimple.OptionParser;
-import joptsimple.OptionSet;
+import static java.util.Arrays.asList;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -13,7 +12,8 @@ import java.time.Clock;
 import java.time.Instant;
 import java.time.LocalDateTime;
 
-import static java.util.Arrays.asList;
+import joptsimple.OptionParser;
+import joptsimple.OptionSet;
 
 public class BlockingTimeClient {
 
