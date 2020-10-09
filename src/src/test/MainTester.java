@@ -21,13 +21,13 @@ import src.input.RequestType;
 
 public class MainTester {
 
-	public static void main(String[] args) throws UnknownHostException, IOException {
+	public static void main(String[] args) throws Exception {
 
-//		testGet();
+//testGet();
 
-		// testPostWithSocket();
+		testPostWithSocket2();
 
-		testPostWithUrlConnection();
+		// testPostWithUrlConnection();
 
 	}
 
@@ -84,6 +84,53 @@ public class MainTester {
 
 	}
 
+	private static void testPostWithSocket2() throws Exception {
+
+		// create command object with basic info
+		Command command = new Command();
+		command.setType(RequestType.GET);
+		command.setUrl("httpbin.org");
+		command.setInlineData("{\"Assignment\": 1}");
+
+		// create request parameters
+		HashMap<String, String> headersMap = new HashMap<String, String>();
+		headersMap.put("Content-Type", "application/json");
+		// add parameters to request command
+		command.setHeaders(headersMap);
+
+		int port = 80;
+
+		InetAddress addr = InetAddress.getByName(command.getUrl());
+		Socket socket = new Socket(addr, port);
+		String dataStr = "";
+
+		for (Entry<String, String> header : headersMap.entrySet()) {
+			dataStr += "&" + URLEncoder.encode(header.getKey(), "UTF-8") + "="
+					+ URLEncoder.encode(header.getValue(), "UTF-8");
+
+		}
+		dataStr.replaceFirst("&", "");
+
+		String path = "/post";
+
+		BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF8"));
+		wr.write("POST " + path + " HTTP/1.0\r\n");
+		wr.write("Content-Length: " + command.getInlineData().length() + "\r\n");
+		wr.write("Content-Type: application/x-www-form-urlencoded\r\n");
+		wr.write("\r\n");
+
+		wr.write(command.getInlineData());
+		wr.flush();
+
+		BufferedReader rd = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		String line;
+		while ((line = rd.readLine()) != null) {
+			System.out.println(line);
+		}
+		wr.close();
+		rd.close();
+	}
+
 	private static void testPostWithSocket() throws IOException {
 
 		// create command object with basic info
@@ -95,7 +142,6 @@ public class MainTester {
 		// create request parameters
 		HashMap<String, String> headersMap = new HashMap<String, String>();
 		headersMap.put("Content-Type", "application/json");
-
 		// add parameters to request command
 		command.setHeaders(headersMap);
 
