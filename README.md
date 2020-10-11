@@ -2,6 +2,9 @@
 # LAB ASSIGNMENT 1
 ## By Babita Bashal & Pranoti Mulay
 
+Content - Overview, How to Run, Test Cases
+
+## Overview 
 ### Purpose
 - to implement the basic functionalities of cURL command line, the functionalities that are related to HTTP protocol.
 - implement HTTP client library for GET and POST using Sockets
@@ -97,4 +100,8 @@ The output of above command is:
  "url": "http://httpbin.org/post"
 }
 ```
+## How to Run
+Run the ```main``` method present in class ```MainTester.java```. Type the command in the console, and press enter to see the results.
 
+## Test Cases
+Sample test case commands are present inside the ```sample-commands.txt``` file
