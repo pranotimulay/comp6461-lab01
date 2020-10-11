@@ -6,7 +6,7 @@ public class Command {
 
 	RequestType type;
 	boolean verboseOption;
-	HashMap<String, String> headers;
+	HashMap<String, String> headers = new HashMap<>();
 	String inlineData;
 	String filePath;
 	String url;
@@ -72,6 +72,25 @@ public class Command {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Command [type=");
+		builder.append(type);
+		builder.append(", verboseOption=");
+		builder.append(verboseOption);
+		builder.append(", headers=");
+		builder.append(headers);
+		builder.append(", inlineData=");
+		builder.append(inlineData);
+		builder.append(", filePath=");
+		builder.append(filePath);
+		builder.append(", url=");
+		builder.append(url);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }
