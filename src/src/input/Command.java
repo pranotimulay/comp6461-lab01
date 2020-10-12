@@ -10,6 +10,7 @@ public class Command {
 	String inlineData;
 	String filePath;
 	String url;
+	String outputFileName;
 
 	public Command() {
 
@@ -89,8 +90,18 @@ public class Command {
 		builder.append(filePath);
 		builder.append(", url=");
 		builder.append(url);
+		builder.append(", outputFileName=");
+		builder.append(outputFileName);
 		builder.append("]");
 		return builder.toString();
+	}
+
+	public String getOutputFileName() {
+		return outputFileName;
+	}
+
+	public void setOutputFileName(String outputFileName) {
+		this.outputFileName = outputFileName;
 	}
 
 }
