@@ -99,7 +99,6 @@ public class MainTester {
 			ps = new PrintStream(new File(PROJECT_LOCATION + "/output/" + command.getOutputFileName()));
 
 		} else {
-			System.out.println("writing sysout");
 			ps = System.out;
 		}
 		System.setOut(ps);
@@ -139,7 +138,6 @@ public class MainTester {
 
 		byte[] encoded = Files.readAllBytes(Paths.get(PROJECT_LOCATION + "/" + filePath));
 		String data = new String(encoded, "utf-8");
-		System.out.println("--------data: \n" + data);
 		return data;
 
 	}

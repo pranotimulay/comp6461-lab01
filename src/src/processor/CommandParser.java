@@ -56,9 +56,9 @@ public class CommandParser {
 			outputFileName = outputFileName.replace("-o", "").trim();
 			commandObj.setOutputFileName(outputFileName);
 			System.out.println("outputFileName: " + outputFileName);
+			command = command.substring(0, command.indexOf("-o"));
 
 		}
-		command = command.substring(0, command.indexOf("-o"));
 
 		String url = getUrl(command);
 		commandObj.setUrl(url);
