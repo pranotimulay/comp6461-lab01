@@ -1,11 +1,12 @@
 package src.test;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
@@ -18,6 +19,8 @@ import src.input.RequestType;
 import src.processor.InputParser;
 
 public class MainTester {
+
+	public static String PROJECT_LOCATION = "/Users/pranoti.mulay/concordia/fall 2020/6461/lab-assignments/01/comp6461-lab01";
 
 	public static void main(String[] args) throws Exception {
 
@@ -85,6 +88,21 @@ public class MainTester {
 		}
 
 		InputStream in = socket.getInputStream();
+		boolean writeToFile = false;
+		if (command.getOutputFileName() != null) {
+			writeToFile = true;
+		}
+
+		PrintStream ps = null;
+
+		if (writeToFile) {
+			ps = new PrintStream(new File(PROJECT_LOCATION + "/output/" + command.getOutputFileName()));
+
+		} else {
+			System.out.println("writing sysout");
+			ps = System.out;
+		}
+		System.setOut(ps);
 
 		if (command.isVerboseOption()) {
 			InputStreamReader isr = new InputStreamReader(in);
@@ -93,6 +111,7 @@ public class MainTester {
 			while ((c = br.read()) != -1) {
 				System.out.print((char) c);
 			}
+
 		}
 
 		else {
@@ -108,11 +127,7 @@ public class MainTester {
 			}
 
 			if (response.substring(response.indexOf(" ") + 1, response.indexOf(" ") + 4).equals("200")) {
-
-				// Save the payload of the HTTP response message
-				PrintWriter printWriter = new PrintWriter(System.out);
-				printWriter.println(response.substring(response.indexOf("\r\n\r\n") + 4));
-				printWriter.close();
+				System.out.println(response.substring(response.indexOf("\r\n\r\n") + 4));
 			} else
 				System.out.println("HTTP request failed");
 		}
@@ -122,8 +137,7 @@ public class MainTester {
 
 	private static String getFileContent(String filePath) throws IOException {
 
-		byte[] encoded = Files.readAllBytes(Paths
-				.get("/Users/pranoti.mulay/concordia/fall 2020/6461/lab-assignments/01/comp6461-lab01/" + filePath));
+		byte[] encoded = Files.readAllBytes(Paths.get(PROJECT_LOCATION + "/" + filePath));
 		String data = new String(encoded, "utf-8");
 		System.out.println("--------data: \n" + data);
 		return data;

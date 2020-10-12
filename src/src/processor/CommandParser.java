@@ -12,6 +12,14 @@ public class CommandParser {
 		Command commandObj = new Command();
 		commandObj.setType(RequestType.GET);
 
+		if (command.contains(" -o ")) {
+			String outputFileName = command.substring(command.indexOf("-o"), command.length());
+			outputFileName = outputFileName.replace("-o", "").trim();
+			commandObj.setOutputFileName(outputFileName);
+			System.out.println("outputFileName: " + outputFileName);
+			command = command.substring(0, command.indexOf("-o"));
+		}
+
 		String url = getUrl(command);
 
 		// clean command string
@@ -42,6 +50,15 @@ public class CommandParser {
 
 		Command commandObj = new Command();
 		commandObj.setType(RequestType.POST);
+
+		if (command.contains(" -o ")) {
+			String outputFileName = command.substring(command.indexOf("-o"), command.length());
+			outputFileName = outputFileName.replace("-o", "").trim();
+			commandObj.setOutputFileName(outputFileName);
+			System.out.println("outputFileName: " + outputFileName);
+
+		}
+		command = command.substring(0, command.indexOf("-o"));
 
 		String url = getUrl(command);
 		commandObj.setUrl(url);
@@ -79,6 +96,7 @@ public class CommandParser {
 			filePath = filePath.replaceAll("-f", "").trim();
 			commandObj.setFilePath(filePath);
 		}
+
 		return commandObj;
 	}
 
