@@ -1,6 +1,6 @@
 # COMP 6461
 # LAB ASSIGNMENT 1
-## By Babita Bashal & Pranoti Mulay
+## By Pranoti Mulay
 
 Content - Overview, How to Run, Test Cases
 
